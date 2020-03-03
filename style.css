@@ -1,7 +1,11 @@
+* {}
+
 .coloringArea {
   width: 50vw;
   height: 100vh;
 }
+
+
 
 body {
   height: 100vh;
@@ -20,13 +24,17 @@ body {
 .colorSwatch {
   width: 50px;
   height: 30px;
-  fill: blue;
+
+
 }
 
 .pickedColor {
   height: 90px;
   width: 100px;
-  background-color: red;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+
   margin-right: 2vw;
 }
 

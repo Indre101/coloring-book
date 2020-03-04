@@ -15,6 +15,7 @@ function getHTMLelements() {
   HTML.meme = document.querySelector(".meme");
   HTML.btnOver = document.querySelector(".btnOver");
   HTML.body = document.querySelector("body");
+  HTML.colorSwatchWhite = document.querySelector(".colorSwatchWhite");
   return HTML;
 }
 
@@ -49,6 +50,7 @@ const getRandomRGBColor = () => {
 };
 
 const getColorChoice = () => {
+  getHTMLelements().colorSwatchWhite.addEventListener("click", pickUpColor);
   getHTMLelements().colorSwatches.forEach(colorChoice => colorChoice.addEventListener("click", pickUpColor));
 };
 

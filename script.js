@@ -9,18 +9,30 @@ function getHTMLelements() {
   HTML.colorSwatches = document.querySelectorAll(".colorSwatch");
   HTML.pickedColor = document.querySelector(".pickedColor");
   HTML.spacesToColorIn = document.querySelectorAll("[data-name=coloring-space]");
-  HTML.bookCover = document.querySelector(".bookCover");
 }
 
-async function init() {
-  getHTMLelements();
 
+
+
+function init() {
+  svgData()
+}
+
+
+async function svgData() {
   const getSVG = await fetch("./cat.svg");
   const response = await getSVG.text();
   HTML.imageTemplate.innerHTML = response;
+
+  handleSvg(response)
+}
+
+function handleSvg(response) {
+  getHTMLelements();
   assignDifferentColors();
   getColorChoice();
   colorTheArea();
+
 }
 
 const assignDifferentColors = () => HTML.colorSwatches.forEach(swatch => (swatch.style.fill = `rgb(${getRandomRGBColor().r}, ${getRandomRGBColor().g}, ${getRandomRGBColor().b})`));
@@ -51,18 +63,14 @@ const pickUpColor = () => {
 };
 
 function colorTheArea() {
-
   HTML.spacesToColorIn.forEach(colorArea => colorArea.addEventListener("click", executeColorIng));
 }
 
 const executeColorIng = () => {
-  event.target.style.fill = colorPick;
   counter++;
+
+  console.log("counter");
+  event.target.style.fill = colorPick;
 
 
 };
-
-
-HTML.bookCover.onclick = function () {
-  HTML.bookCover.dataset.clicked = "true";
-}

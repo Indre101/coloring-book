@@ -11,12 +11,12 @@ function getHTMLelements() {
   HTML.spacesToColorIn = document.querySelectorAll("[data-name=coloring-space]");
   HTML.modalContainer = document.querySelector(".modalContainer");
   HTML.buttonContinue = document.querySelector(".buttonContinue");
-  HTML.buttonDone = document.querySelector(".buttonDone");
+  HTML.buttonsDone = document.querySelectorAll(".buttonDone");
   HTML.meme = document.querySelector(".meme");
+  HTML.btnOver = document.querySelector(".btnOver");
+  HTML.body = document.querySelector("body");
   return HTML;
 }
-
-
 
 
 async function init() {
@@ -68,18 +68,24 @@ function colorTheArea() {
 const executeColorIng = () => {
   counter++;
   event.target.style.fill = colorPick;
-  // getHTMLelements().spacesToColorIn.length
-  if (counter === 4) {
+  if (counter === getHTMLelements().spacesToColorIn.length) {
     getHTMLelements().modalContainer.dataset.active = "true";
   }
 
   getHTMLelements().buttonContinue.addEventListener("click", () => {
     getHTMLelements().modalContainer.dataset.active = " ";
+    getHTMLelements().btnOver.dataset.active = "true";
   })
 
-  getHTMLelements().buttonDone.addEventListener("click", () => {
+  getHTMLelements().buttonsDone.forEach(btn => btn.addEventListener("click", () => {
     getHTMLelements().meme.dataset.active = "true";
-    HTML.modalContainer.dataset.active = " ";
-  })
+    getHTMLelements().modalContainer.dataset.active = " ";
+    getHTMLelements().spacesToColorIn.forEach(colorArea => colorArea.removeEventListener("click", executeColorIng));
 
-};
+    setTimeout(() => {
+      getHTMLelements().meme.dataset.active = " ";
+    }, 4000);
+
+  }))
+
+}

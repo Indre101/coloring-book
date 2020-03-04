@@ -113,3 +113,11 @@ body {
 .meme[data-active="true"] {
   display: block;
 }
+
+.btnOver {
+  display: none;
+}
+
+.btnOver[data-active="true"] {
+  display: flex;
+}

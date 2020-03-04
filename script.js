@@ -9,6 +9,10 @@ function getHTMLelements() {
   HTML.colorSwatches = document.querySelectorAll(".colorSwatch");
   HTML.pickedColor = document.querySelector(".pickedColor");
   HTML.spacesToColorIn = document.querySelectorAll("[data-name=coloring-space]");
+  HTML.modalContainer = document.querySelector(".modalContainer");
+  HTML.buttonContinue = document.querySelector(".buttonContinue");
+  HTML.buttonDone = document.querySelector(".buttonDone");
+  HTML.meme = document.querySelector(".meme");
   return HTML;
 }
 
@@ -64,8 +68,18 @@ function colorTheArea() {
 const executeColorIng = () => {
   counter++;
   event.target.style.fill = colorPick;
-  if (counter === getHTMLelements().spacesToColorIn.length) {
-
+  // getHTMLelements().spacesToColorIn.length
+  if (counter === 4) {
+    getHTMLelements().modalContainer.dataset.active = "true";
   }
+
+  getHTMLelements().buttonContinue.addEventListener("click", () => {
+    getHTMLelements().modalContainer.dataset.active = " ";
+  })
+
+  getHTMLelements().buttonDone.addEventListener("click", () => {
+    getHTMLelements().meme.dataset.active = "true";
+    HTML.modalContainer.dataset.active = " ";
+  })
 
 };

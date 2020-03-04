@@ -63,9 +63,9 @@ function colorTheArea() {
 
 const executeColorIng = () => {
   counter++;
-
-  console.log("counter");
   event.target.style.fill = colorPick;
+  if (counter === getHTMLelements().spacesToColorIn.length) {
 
+  }
 
 };

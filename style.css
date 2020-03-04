@@ -13,6 +13,16 @@
   padding: 3vw;
 }
 
+[data-name="coloring-space"] {
+  transition: fill 0.3s ease-in-out;
+  cursor: pointer;
+
+}
+
+[data-name="coloring-space"]:hover {
+  fill: lightgray;
+}
+
 
 
 body {
@@ -38,7 +48,7 @@ body {
   height: 30px;
   stroke: black;
   fill: white;
-
+  cursor: pointer;
 
 }
 

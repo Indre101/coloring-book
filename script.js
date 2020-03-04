@@ -1,41 +1,36 @@
 window.addEventListener("DOMContentLoaded", init);
 
-const HTML = {}
 
 
 function getHTMLelements() {
+  const HTML = {};
 
   HTML.imageTemplate = document.querySelector(".imageTemplate");
   HTML.colorSwatches = document.querySelectorAll(".colorSwatch");
   HTML.pickedColor = document.querySelector(".pickedColor");
   HTML.spacesToColorIn = document.querySelectorAll("[data-name=coloring-space]");
+  return HTML;
 }
 
 
 
 
-function init() {
-  svgData()
-}
-
-
-async function svgData() {
+async function init() {
   const getSVG = await fetch("./cat.svg");
   const response = await getSVG.text();
-  HTML.imageTemplate.innerHTML = response;
-
   handleSvg(response)
 }
 
+
 function handleSvg(response) {
-  getHTMLelements();
+  getHTMLelements().imageTemplate.innerHTML = response;
   assignDifferentColors();
   getColorChoice();
   colorTheArea();
 
 }
 
-const assignDifferentColors = () => HTML.colorSwatches.forEach(swatch => (swatch.style.fill = `rgb(${getRandomRGBColor().r}, ${getRandomRGBColor().g}, ${getRandomRGBColor().b})`));
+const assignDifferentColors = () => getHTMLelements().colorSwatches.forEach(swatch => (swatch.style.fill = `rgb(${getRandomRGBColor().r}, ${getRandomRGBColor().g}, ${getRandomRGBColor().b})`));
 
 const getRandomRGBColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -50,7 +45,7 @@ const getRandomRGBColor = () => {
 };
 
 const getColorChoice = () => {
-  HTML.colorSwatches.forEach(colorChoice => colorChoice.addEventListener("click", pickUpColor));
+  getHTMLelements().colorSwatches.forEach(colorChoice => colorChoice.addEventListener("click", pickUpColor));
 };
 
 let colorPick;
@@ -58,12 +53,12 @@ let counter = 0;
 
 const pickUpColor = () => {
   colorPick = event.target.style.fill;
-  HTML.pickedColor.style.backgroundColor = colorPick;
+  getHTMLelements().pickedColor.style.backgroundColor = colorPick;
   return colorPick;
 };
 
 function colorTheArea() {
-  HTML.spacesToColorIn.forEach(colorArea => colorArea.addEventListener("click", executeColorIng));
+  getHTMLelements().spacesToColorIn.forEach(colorArea => colorArea.addEventListener("click", executeColorIng));
 }
 
 const executeColorIng = () => {
